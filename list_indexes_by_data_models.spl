@@ -1,0 +1,5 @@
+| rest splunk_server=local count=0 /servicesNS/-/-/admin/datamodel-files
+| fields title 
+| map maxsearches=100 search="
+    | tstats summariesonly=true allow_old_summaries=true values(sourcetype) as sourcetype count from datamodel=$title$ where (index=* OR index=_*) by index| eval datamodel=\"$title$\""
+| stats values(index) as indexes by datamodel

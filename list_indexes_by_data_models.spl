@@ -1,3 +1,7 @@
+/* 
+This will list all indexes for each data model. It will only list indexes with dat sources and events that have been normalized for that data model
+*/
+
 | rest splunk_server=local count=0 /servicesNS/-/-/admin/datamodel-files
 | fields title 
 | map maxsearches=100 search="
